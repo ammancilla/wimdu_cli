@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.join(File.dirname(__FILE__), %w[.. lib])
+
+require 'wimdu_cli'
+
+case ARGV[0]
+when 'list'
+  WimduCli::Command.list
+when 'new'
+  WimduCli::Command.new
+when 'continue'
+  if ARGV[1]
+    WimduCli::Command.continue(ARGV[1])
+  else
+    puts "\nPlease, specify the ID of the property.\n\n"
+  end
+when 'reset'
+  WimduCli::Command.reset
+else
+  puts "\nWe are confused. We don't know how to execute that command.\n\n"
+end
+
