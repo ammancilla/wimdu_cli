@@ -1,5 +1,18 @@
 #Wimdu coding challenge
 
+## Usage
+
+Run from your command line:
+```
+$ bundle install
+```
+Then, use it:
+```
+$ bin/wimdu_cli [COMMAND]
+```
+
+## Description
+
 On wimdu.com, people can list their place to rent out. Wouldn't it be
 great if there was a more nerdy way to enter your data? How about a
 CLI?
