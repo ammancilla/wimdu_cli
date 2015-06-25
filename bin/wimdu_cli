@@ -17,6 +17,8 @@ when 'continue'
   end
 when 'reset'
   WimduCli::Command.reset
+when nil
+  WimduCli::Command.help
 else
   puts "\nWe are confused. We don't know how to execute that command.\n\n"
 end

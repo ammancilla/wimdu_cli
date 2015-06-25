@@ -54,6 +54,18 @@ module WimduCli
         puts "\nDone! All the previous registered information is gone.\n\n"
       end
 
+      def help
+        text = [
+          "\n*** Wimdu help ***",
+          "wimdu_cli                           display list of available commands",
+          "wimdu_cli list                      show the list of fully registered properties",
+          "wimdu_cli new                       create a new property",
+          "wimdu_cli continue <property_id>    continue with the creation of a partially created property",
+          "wimdu_cli reset                     clear the Wimdu storage"
+        ].join("\n")
+        puts text + "\n\n"
+      end
+
       private
         # Private: manage the creation process of a Property
         #
