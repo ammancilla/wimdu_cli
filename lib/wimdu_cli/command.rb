@@ -55,7 +55,7 @@ module WimduCli
       end
 
       private
-        # Public: manage the creation process of a Property
+        # Private: manage the creation process of a Property
         #
         # property - an instance of the Property class
         # 
@@ -82,7 +82,7 @@ module WimduCli
           puts "\nGreat job! Listing #{property.id} is complete!\n\n"
         end
 
-        # Public: ask, read and assign a value for the specified attribute
+        # Private: ask, read and assign a value for the specified attribute
         # 
         # property - an instance of the Property class
         # attribute - the name of the attribute to read
