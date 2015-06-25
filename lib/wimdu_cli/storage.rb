@@ -1,7 +1,3 @@
-#
-# Storage is the interface to store and retrieve from the disk the stored Properties
-#
-
 require 'yajl'
 require 'fileutils'
 
