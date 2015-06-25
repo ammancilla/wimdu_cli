@@ -57,7 +57,7 @@ module WimduCli
       def help
         text = [
           "\n*** Wimdu CLI help ***",
-          "wimdu_cli                           display list of available commands",
+          "wimdu_cli                           alias of help command",
           "wimdu_cli list                      show the list of fully registered properties",
           "wimdu_cli new                       create a new property",
           "wimdu_cli continue <property_id>    continue with the creation of a partially created property",
