@@ -56,12 +56,13 @@ module WimduCli
 
       def help
         text = [
-          "\n*** Wimdu help ***",
+          "\n*** Wimdu CLI help ***",
           "wimdu_cli                           display list of available commands",
           "wimdu_cli list                      show the list of fully registered properties",
           "wimdu_cli new                       create a new property",
           "wimdu_cli continue <property_id>    continue with the creation of a partially created property",
-          "wimdu_cli reset                     clear the Wimdu storage"
+          "wimdu_cli reset                     clear the Wimdu storage",
+          "wimdu_cli help                      display list of available commands"
         ].join("\n")
         puts text + "\n\n"
       end

@@ -17,6 +17,8 @@ when 'continue'
   end
 when 'reset'
   WimduCli::Command.reset
+when 'help'
+  WimduCli::Command.help
 when nil
   WimduCli::Command.help
 else
