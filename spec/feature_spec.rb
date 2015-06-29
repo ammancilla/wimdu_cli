@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "Wimdu CLI" do
-  let(:exe) { File.expand_path('../../bin/wimdu', __FILE__) }
+  let(:exe) { File.expand_path('../../bin/wimdu_cli', __FILE__) }
 
   describe "new" do
     let(:cmd) { "#{exe} new" }
