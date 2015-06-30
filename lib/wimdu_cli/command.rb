@@ -8,12 +8,12 @@ module WimduCli
       def list
         properties = WimduCli.storage.find_by('step' => 8)
         if properties.empty?
-          puts "\nNo properties found.\n\n"
+          p "No properties found."
         else
-          puts "\nFound #{properties.count} offer(s)\n\n"
+          p "Found #{properties.count} offer(s)"
 
-          properties.each { |id, attributes| puts "#{id}: #{attributes['title']}" }
-          puts "\n"
+          properties.each { |id, attributes| p "#{id}: #{attributes['title']}" }
+          p ""
         end
       end
 
@@ -23,7 +23,7 @@ module WimduCli
       def new
         property = Property.new
         property.save
-        puts "\nStarting with new property #{property.id}\n\n"
+        p "Starting with new property #{property.id}"
         create_or_continue_property(property)
       end
 
@@ -36,13 +36,13 @@ module WimduCli
         if property_attributes = WimduCli.storage.find(id)
           property = Property.new(property_attributes.merge(id: id))
           if property.complete?
-            puts "\n Listing #{property.id} is already complete!\n\n"
+            p "Listing #{property.id} is already complete!"
           else
-            puts "\nContinuing with #{id}\n\n"
+            p "Continuing with #{id}"
             create_or_continue_property(property)
           end
         else
-          puts "\nWe couldn't find the property #{id}. Try again or create a new one\n\n"
+          p "We couldn't find the property #{id}. Try again or create a new one\n\n"
         end
       end
 
@@ -51,12 +51,12 @@ module WimduCli
       # Returns nothing
       def reset
         WimduCli.storage.reset
-        puts "\nDone! All the previous registered information is gone.\n\n"
+        p "Done! All the previous registered information is gone."
       end
 
       def help
         text = [
-          "\n*** Wimdu CLI help ***",
+          "*** Wimdu CLI help ***",
           "wimdu_cli                           alias of help command",
           "wimdu_cli list                      show the list of fully registered properties",
           "wimdu_cli new                       create a new property",
@@ -64,7 +64,7 @@ module WimduCli
           "wimdu_cli reset                     clear the Wimdu storage",
           "wimdu_cli help                      display list of available commands"
         ].join("\n")
-        puts text + "\n\n"
+        p text
       end
 
       private
@@ -92,7 +92,7 @@ module WimduCli
               read_property_attr property, 'rate_per_night', 'Nightly rate in EUR'
             end
           end
-          puts "\nGreat job! Listing #{property.id} is complete!\n\n"
+          p "Great job! Listing #{property.id} is complete!"
         end
 
         # Private: ask, read and assign a value for the specified attribute
@@ -104,9 +104,9 @@ module WimduCli
         # Returns nothing
         def read_property_attr(property, attribute, label)
           begin
-            print "#{label}: "
+            p "#{label}: "
             property.send("#{attribute}=", $stdin.gets.chomp)
-            puts "\nError: #{property.errors[attribute].join(', ')}\n\n" unless property.valid_attribute?(attribute)
+            p "Error: #{property.errors[attribute].join(', ')}" unless property.valid_attribute?(attribute)
           end while(!property.valid_attribute?(attribute))
           property.next_step
           property.save

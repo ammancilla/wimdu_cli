@@ -1,5 +1,8 @@
 require 'aruba/api'
 require 'aruba/reporting'
+require 'wimdu_cli'
+
+include WimduCli
 
 RSpec.configure do |config|
   config.include Aruba::Api

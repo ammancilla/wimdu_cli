@@ -4,12 +4,8 @@ require 'fileutils'
 module WimduCli
   class Storage
 
-    # Public: The path to the JSON file where the data is going to be stored.
-    # 
-    # Returns the String path to the JSON file
-    def json_file
-      "#{ENV['HOME']}/.wimdu_storage"
-    end
+    # Location of the Wimdu CLI storage JSON file
+    JSON_FILE = "#{ENV['HOME']}/.wimdu_storage"
 
     # Public: initializes a Storage instance and create the JSON file if necessary.
     #
@@ -52,14 +48,14 @@ module WimduCli
     # 
     # Returns nothing.
     def reset
-      File.open(json_file, 'w') { |f| f.write('{}') }
+      File.open(JSON_FILE, 'w') { |f| f.write('{}') }
     end
 
     # Public: read the data stored in the JSON file and parse it
     #  
     # Returns a Hash of Hashes with the representation of each stored Property.
     def retrieve_and_parse_data
-      data = File.open(json_file, 'r')
+      data = File.open(JSON_FILE, 'r')
       Yajl::Parser.parse data
     end
     alias_method :properties, :retrieve_and_parse_data
@@ -72,16 +68,16 @@ module WimduCli
       # Returns nothing.
       def encode_and_store(data)
         encoded = Yajl::Encoder.encode(data, pretty: true)
-        File.open(json_file, 'w') { |f| f.write(encoded) }
+        File.open(JSON_FILE, 'w') { |f| f.write(encoded) }
       end
 
       # Private: create the JSON file if it haven't been created
       #  
       # Returns nothing.
       def bootstrap
-        unless File.exist?(json_file)
-          FileUtils.touch(json_file) 
-          File.open(json_file, 'w') { |f| f.write('{}') }
+        unless File.exist?(JSON_FILE)
+          FileUtils.touch(JSON_FILE) 
+          File.open(JSON_FILE, 'w') { |f| f.write('{}') }
         end
       end
   end
